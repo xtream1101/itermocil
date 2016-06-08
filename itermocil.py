@@ -10,7 +10,7 @@ import yaml
 from math import ceil
 
 
-__version__ = '0.2.1'
+__version__ = '0.2.1.1'
 
 
 class Itermocil(object):
@@ -64,8 +64,14 @@ class Itermocil(object):
         # to script.
         if not self.here:
             if self.new_iterm:
+                if 'profile' in self.parsed_config['windows'][0]['panes'][0]:
+                    new_profile = 'profile "' + self.parsed_config['windows'][0]['panes'][0]['profile'] + '"'
+                elif 'profile' in self.parsed_config['windows'][0]:
+                    new_profile = 'profile "' + self.parsed_config['windows'][0]['profile'] + '"'
+                else:
+                    new_profile = "default profile"
                 self.applescript.append('tell current window')
-                self.applescript.append('create tab with default profile')
+                self.applescript.append('create tab with {prof}'.format(prof=new_profile))
                 self.applescript.append('end tell')
                 # self.applescript.append('create window with default profile')
             else:
@@ -145,7 +151,7 @@ class Itermocil(object):
 
         return parsed_script
 
-    def arrange_panes(self, num_panes, layout="tiled"):
+    def arrange_panes(self, num_panes, current_window, layout="tiled"):
         """ Create a set of Applescript instructions to generate the desired
             layout of panes. Attempt to match teamocil layout behaviour as
             closely as is possible.
@@ -156,10 +162,17 @@ class Itermocil(object):
 
         def create_pane(parent, child, split="vertical"):
 
+            if 'profile' in self.parsed_config['windows'][current_window]['panes'][child-1]:
+                profile = 'profile "' + self.parsed_config['windows'][current_window]['panes'][child-1]['profile'] + '"'
+            elif 'profile' in self.parsed_config['windows'][current_window]:
+                profile = 'profile "' + self.parsed_config['windows'][current_window]['profile']
+            else:
+                profile = "same profile"
+
             return (''' tell pane_{pp}
-                            set pane_{cp} to (split {o}ly with same profile)
+                            set pane_{cp} to (split {o}ly with {prof})
                         end tell
-                    '''.format(pp=parent, cp=child, o=split))
+                    '''.format(pp=parent, cp=child, o=split, prof=profile))
 
         # Link a variable to the current window.
         self.applescript.append("set pane_1 to (current session of current window)")
@@ -510,8 +523,14 @@ class Itermocil(object):
         for num, window in enumerate(self.parsed_config['windows']):
             if num > 0:
                 if self.new_iterm:
+                    if 'profile' in self.parsed_config['windows'][num]['panes'][0]:
+                        new_profile = 'profile "' + self.parsed_config['windows'][num]['panes'][0]['profile'] + '"'
+                    elif 'profile' in self.parsed_config['windows'][num]:
+                        new_profile = 'profile "' + self.parsed_config['windows'][num]['profile']
+                    else:
+                        new_profile = "default profile"
                     self.applescript.append('tell current window')
-                    self.applescript.append('create tab with default profile')
+                    self.applescript.append('create tab with {prof}'.format(prof=new_profile))
                     self.applescript.append('end tell')
                     # self.applescript.append('create window with default profile')
                 else:
@@ -546,7 +565,7 @@ class Itermocil(object):
             if 'panes' in window:
 
                 if self.new_iterm:
-                    self.arrange_panes(len(window['panes']), layout)
+                    self.arrange_panes(len(window['panes']), num, layout)
                 else:
                     self.arrange_panes_old_iterm(len(window['panes']), layout)
 
