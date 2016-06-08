@@ -622,6 +622,15 @@ class Itermocil(object):
                         if 'focus' in pane:
                             focus_pane = pane_num
 
+                        # Base command is specified and defined in window
+                        # Params field is the trigger to use the base command!
+                        if 'base_command' in window and 'params' in pane:
+                            command = window['base_command']
+                            if pane['params'] != None:
+                                command = command.format(**pane['params'])
+                            escaped_command = command.replace('"', r'\"')
+                            pane_commands.append(escaped_command)
+
                     else:
                         escaped_command = pane.replace('"', r'\"')
                         pane_commands.append(escaped_command)
