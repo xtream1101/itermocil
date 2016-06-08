@@ -457,13 +457,21 @@ class Itermocil(object):
             ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(n/10%10!=1)*(n%10<4)*n%10::4])
             tell_target = ordinal(pane) + ' session of current terminal'
 
+        # Turn commands list into a string command
+        command = "; ".join(commands)
+
+        m = re.search( '(//([a-z]+)//\s', command )
+        if m:
+            command = re.sub( r'//[a-z]+//\s', '', command )
+            name = 'Lang: ' + m.group(2)
+
         # Setting the pane name is mercifully the same across both
         # iTerm versions.
+        name_command = ''
         if name:
             name_command = 'set name to "' + name + '"'
 
-        # Turn commands list into a string command
-        command = "; ".join(commands)
+        
 
         # Build the applescript snippet.
         self.applescript.append(
