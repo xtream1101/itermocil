@@ -247,7 +247,7 @@ class Itermocil(object):
 
         # 'tiled_horizontal_w_lang' layouts create 2 rows and then however many columns as
         # needed. Patched version of 'tiled'.
-        elif layout == 'tiled_horizontal_w_lang':
+        elif layout == 'tiled_horizontal':
 
             vertical_splits = int(ceil((num_panes / 2.0))) - 1
             second_columns = num_panes / 2
