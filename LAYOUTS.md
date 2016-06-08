@@ -1,12 +1,12 @@
 ## Intro
 
-iTermocil allows you to setup pre-configured layouts of windows and panes in [iTerm2](https://iterm2.com/); see the [README](https://github.com/TomAnthony/itermocil/blob/master/README.md)
+iTermocil allows you to setup pre-configured layouts of windows and panes in [iTerm2](https://iterm2.com/); see the [README](https://github.com/christophthiele/itermocil/blob/master/README.md)
 
 This page includes information about additional layouts.
 
 ## Layouts
 
-There are a variety of [example layout files](https://github.com/TomAnthony/itermocil/tree/master/test_layouts) in this repo.
+There are a variety of [example layout files](https://github.com/christophthiele/itermocil/tree/master/test_layouts) in this repo.
 
 ### even-horizontal
 
@@ -141,6 +141,8 @@ windows:
       - foreman start web
       - git status
       - foreman start worker
+      - task 5
+      - task 6
 ```
 
 ```
@@ -154,7 +156,44 @@ windows:
 |                      |                      |
 |                      |                      |
 |                      |                      |
+|----------------------|----------------------|
+| (4) task 5           | (5) task 6           |
+|                      |                      |
+|                      |                      |
+|                      |                      |
 '----------------------'----------------------'
+```
+
+### tiled_horizontal
+
+Create 2 rows and as many columns as needed. An uneven number of panes will mean the last column spans both rows. This is the same as tiled layout but for a different expand direction.
+
+```yaml
+windows:
+  - name: sample-four-panes
+    root: ~/Code/sample/www
+    layout: tiled_horizontal
+    panes:
+      - vim
+      - foreman start web
+      - git status
+      - foreman start worker
+      - task 5
+      - task 6
+```
+
+```
+.----------------------.----------------------.----------------------.
+| (0) vim              | (1)foreman start web | (4)task 5            |
+|                      |                      |                      |
+|                      |                      |                      |
+|                      |                      |                      |
+|----------------------|----------------------|----------------------|
+| (2) git status       | (3) foreman start w..| (5)task 6            |
+\                      |                      |                      |
+|                      |                      |                      |
+|                      |                      |                      |
+'----------------------'----------------------'----------------------'
 ```
 
 ### 3_columns

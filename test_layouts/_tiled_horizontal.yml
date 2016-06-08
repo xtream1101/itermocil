@@ -1,0 +1,11 @@
+windows:
+  - name: _tiled_horizontal
+    root: ~
+    layout: tiled_horizontal
+    profile: testProfile
+    base_command: echo "{text}"
+    panes:
+      - echo "pane 1"
+      - name: TestPane
+        params:
+          text: pane 2

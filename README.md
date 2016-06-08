@@ -4,14 +4,14 @@ iTermocil allows you to setup pre-configured layouts of windows and panes in [iT
 
 iTermocil supports iTerm 2.x and the new 3.x (including later betas). It works better with the new 3.x versions which have improved Applescript support.
 
-![Example](https://raw.githubusercontent.com/TomAnthony/itermocil/master/itermocil.gif)
+![Example](https://raw.githubusercontent.com/christophthiele/itermocil/master/itermocil.gif)
 
 ## Installing iTermocil
 
 ```bash
 # Install `itermocil` via Homebrew
 $ brew update
-$ brew install TomAnthony/brews/itermocil
+$ brew install christophthiele/brews/itermocil
 
 # Create your layout directory
 $ mkdir ~/.itermocil
@@ -68,15 +68,17 @@ iTermocil is compatible with all of teamocil's flags, and they all work in the s
 
 ### Windows
 
-| Key        | Description
-|------------|----------------------------
-| `name`     | All iTerm panes in this window will be given this name.
-| `root`     | The path where all panes in the window will be started
-| `layout`   | The layout format that iTermocil will use (see below)
-| `panes`    | An `Array` of panes
-| `command`  | A command to run in the current window. Ignored if `panes` is present
-| `commands` | An array of commands for run in the current window. Ignored if either `panes` or `command `is present
-| `focus`    | This is currently unsupported in iTermocil
+| Key            | Description
+|----------------|----------------------------
+| `name`         | All iTerm panes in this window will be given this name.
+| `root`         | The path where all panes in the window will be started
+| `layout`       | The layout format that iTermocil will use (see below)
+| `panes`        | An `Array` of panes
+| `command`      | A command to run in the current window. Ignored if `panes` is present
+| `commands`     | An array of commands for run in the current window. Ignored if either `panes` or `command `is present
+| `focus`        | This is currently unsupported in iTermocil
+| `profile`      | The iTerm profile used to create tab
+| `base_command` | A command executed for all panes that define `params`. See window config.
 
 
 ### Panes
@@ -87,10 +89,19 @@ A pane can either be a `String` or a `Hash`. If it’s a `String`, Teamocil will
 |------------|----------------------------
 | `commands` | An `Array` of commands that will be ran when the pane is created
 | `focus`    | If set to `true`, the pane will be selected after the layout has been executed
+| `profile`  | The iTerm profile used to create tab
+| `params`   | An associated list to fill placeholders in `base_command`. If command has no params, define emtpy as `params:`.
+
+
+## Base config & profiles
+
+The `profile:` key on window or pane level allows to set a specific profile.
+For repetitive tasks there exist a `base_command:` in the window that can be invoked by defining `params:` in a panel. If this key is set, the pane will execute the base command. If this command has placeholders (MUST be named, e.g. `echo {text}`), they should be defined under `params:` as key value pairs.
+
 
 ## Examples
 
-See some example of various layouts below, or see [Layouts](https://github.com/TomAnthony/itermocil/blob/master/LAYOUTS.md) for more information on the available layouts. There is also a variety of [example layout files](https://github.com/TomAnthony/itermocil/tree/master/test_layouts) in this repo.
+See some example of various layouts below, or see [Layouts](https://github.com/christophthiele/itermocil/blob/master/LAYOUTS.md) for more information on the available layouts. There is also a variety of [example layout files](https://github.com/christophthiele/itermocil/tree/master/test_layouts) in this repo.
 
 ### Simple two pane window
 
@@ -251,7 +262,7 @@ windows:
 
 ### Additional Layouts
 
-In the [Layouts](https://github.com/TomAnthony/itermocil/blob/master/LAYOUTS.md) file you can see these additional layouts:
+In the [Layouts](https://github.com/christophthiele/itermocil/blob/master/LAYOUTS.md) file you can see these additional layouts:
 
 - 3_columns - 3 columns with as many rows as needed
 - double-main-vertical - 2 left full height columns, and a third multi-row column
@@ -327,4 +338,4 @@ A huge thanks to [Rémi Prévost](http://www.exomel.com/en) who authored [teamoc
 
 ## License
 
-iTermocil is © 2016 [Tom Anthony](https://twitter.com/tomanthonyseo) and may be freely distributed under the [MIT license](https://github.com/TomAnthony/itermocil/blob/master/LICENSE.md). See the LICENSE file for more information.
+iTermocil is © 2016 [Tom Anthony](https://twitter.com/tomanthonyseo) and may be freely distributed under the [MIT license](https://github.com/TomAnthony/itermocil/blob/master/LICENSE.md). See the LICENSE file for more information. Modifications © Christoph Thiele.
