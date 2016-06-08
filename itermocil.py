@@ -10,7 +10,7 @@ import yaml
 from math import ceil
 
 
-__version__ = '0.2.1.3'
+__version__ = '0.2.1.4'
 
 
 class Itermocil(object):
@@ -165,7 +165,7 @@ class Itermocil(object):
             if 'profile' in self.parsed_config['windows'][current_window]['panes'][child-1]:
                 profile = 'profile "' + self.parsed_config['windows'][current_window]['panes'][child-1]['profile'] + '"'
             elif 'profile' in self.parsed_config['windows'][current_window]:
-                profile = 'profile "' + self.parsed_config['windows'][current_window]['profile']
+                profile = 'profile "' + self.parsed_config['windows'][current_window]['profile'] + '"'
             else:
                 profile = "same profile"
 
@@ -473,7 +473,7 @@ class Itermocil(object):
         # Turn commands list into a string command
         command = "; ".join(commands)
 
-        m = re.search( '(//([a-z]+)//\s', command )
+        m = re.search( '(//([a-z]+)//)\s', command )
         if m:
             command = re.sub( r'//[a-z]+//\s', '', command )
             name = 'Lang: ' + m.group(2)
