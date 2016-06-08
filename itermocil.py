@@ -10,7 +10,7 @@ import yaml
 from math import ceil
 
 
-__version__ = '0.2.1'
+__version__ = '0.2.1.2'
 
 
 class Itermocil(object):
@@ -244,6 +244,23 @@ class Itermocil(object):
                 pp = (p * 2) + 1
                 cp = pp + 1
                 self.applescript.append(create_pane(pp, cp, "vertical"))
+
+        # 'tiled_horizontal_w_lang' layouts create 2 rows and then however many columns as
+        # needed. Patched version of 'tiled'.
+        elif layout == 'tiled_horizontal_w_lang':
+
+            vertical_splits = int(ceil((num_panes / 2.0))) - 1
+            second_columns = num_panes / 2
+
+            for p in range(0, vertical_splits):
+                pp = (p * 2) + 1
+                cp = pp + 2
+                self.applescript.append(create_pane(pp, cp, "vertical"))
+
+            for p in range(0, second_columns):
+                pp = (p * 2) + 1
+                cp = pp + 1
+                self.applescript.append(create_pane(pp, cp, "horizontal"))
 
         # '3_columns' layouts create 3 columns and then however many rows as
         # needed. If there are odd number of panes then the bottom pane
