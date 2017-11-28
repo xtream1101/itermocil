@@ -471,7 +471,7 @@ class Itermocil(object):
             tell_target = ordinal(pane) + ' session of current terminal'
 
         # Turn commands list into a string command
-        command = "&& ".join(commands)
+        command = " && ".join(commands)
 
         m = re.search( '(//([a-z]+)//)\s', command )
         if m:
