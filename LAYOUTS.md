@@ -1,12 +1,12 @@
 ## Intro
 
-iTermocil allows you to setup pre-configured layouts of windows and panes in [iTerm2](https://iterm2.com/); see the [README](https://github.com/christophthiele/itermocil/blob/master/README.md)
+iTermocil allows you to setup pre-configured layouts of windows and panes in [iTerm2](https://iterm2.com/); see the [README](https://github.com/xtream1101/itermocil/blob/master/README.md)
 
 This page includes information about additional layouts.
 
 ## Layouts
 
-There are a variety of [example layout files](https://github.com/christophthiele/itermocil/tree/master/test_layouts) in this repo.
+There are a variety of [example layout files](https://github.com/xtream1101/itermocil/tree/master/test_layouts) in this repo.
 
 ### even-horizontal
 

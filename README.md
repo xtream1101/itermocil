@@ -4,14 +4,14 @@ iTermocil allows you to setup pre-configured layouts of windows and panes in [iT
 
 iTermocil supports iTerm 2.x and the new 3.x (including later betas). It works better with the new 3.x versions which have improved Applescript support.
 
-![Example](https://raw.githubusercontent.com/christophthiele/itermocil/master/itermocil.gif)
+![Example](https://raw.githubusercontent.com/xtream1101/itermocil/master/itermocil.gif)
 
 ## Installing iTermocil
 
 ```bash
 # Install `itermocil` via Homebrew
 $ brew update
-$ brew install christophthiele/brews/itermocil
+$ brew install xtream1101/brews/itermocil
 
 # Create your layout directory
 $ mkdir ~/.itermocil
@@ -101,7 +101,7 @@ For repetitive tasks there exist a `base_command:` in the window that can be inv
 
 ## Examples
 
-See some example of various layouts below, or see [Layouts](https://github.com/christophthiele/itermocil/blob/master/LAYOUTS.md) for more information on the available layouts. There is also a variety of [example layout files](https://github.com/christophthiele/itermocil/tree/master/test_layouts) in this repo.
+See some example of various layouts below, or see [Layouts](https://github.com/xtream1101/itermocil/blob/master/LAYOUTS.md) for more information on the available layouts. There is also a variety of [example layout files](https://github.com/xtream1101/itermocil/tree/master/test_layouts) in this repo.
 
 ### Simple two pane window
 
@@ -262,7 +262,7 @@ windows:
 
 ### Additional Layouts
 
-In the [Layouts](https://github.com/christophthiele/itermocil/blob/master/LAYOUTS.md) file you can see these additional layouts:
+In the [Layouts](https://github.com/xtream1101/itermocil/blob/master/LAYOUTS.md) file you can see these additional layouts:
 
 - 3_columns - 3 columns with as many rows as needed
 - double-main-vertical - 2 left full height columns, and a third multi-row column
@@ -338,4 +338,4 @@ A huge thanks to [Rémi Prévost](http://www.exomel.com/en) who authored [teamoc
 
 ## License
 
-iTermocil is © 2016 [Tom Anthony](https://twitter.com/tomanthonyseo) and may be freely distributed under the [MIT license](https://github.com/TomAnthony/itermocil/blob/master/LICENSE.md). See the LICENSE file for more information. Modifications © Christoph Thiele.
+iTermocil is © 2016 [Tom Anthony](https://twitter.com/tomanthonyseo) and may be freely distributed under the [MIT license](https://github.com/TomAnthony/itermocil/blob/master/LICENSE.md). See the LICENSE file for more information. Modifications © Christoph Thiele. Modifications © Eddy Hintze.
